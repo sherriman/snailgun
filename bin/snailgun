@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # Copyright (C) Brian Candler 2009. Released under the Ruby licence.
-
+ENV['SNAILGUN'] = 'yes'
 # Turn on copy-on-write garbage collection in REE: see
 # http://www.rubyenterpriseedition.com/documentation.html#_copy_on_write_friendliness
 begin
@@ -82,13 +82,12 @@ when :rails
       server = Snailgun::Server.new("#{sockdir}/#{env}")
       ENV['RAILS_ENV'] = env
       load conf
-      if File.exist?('./config/environment.rb')
-        require './config/environment.rb'
-      end
       # We can get some drastic test speedups by preloading test frameworks
       # (although user could do that in config/environments/test.rb)
       if env != 'test'
-        # do nothing
+        if File.exist?('./config/environment.rb')
+          require './config/environment.rb'
+        end
       elsif File.exist?('./test/test_helper.rb')
         require './test/test_helper'
       elsif File.exist?('spec/spec_helper.rb')

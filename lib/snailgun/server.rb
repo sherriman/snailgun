@@ -50,6 +50,8 @@ module Snailgun
             #This doesn't work in 1.8.6:
             #Thread.new { client.read(1); Thread.main.raise Interrupt }
             Thread.new { client.read(1); exit 1 }
+            Dispatcher.cleanup_application
+            Dispatcher.reload_application
             start_ruby(args)
           rescue SystemExit => e
             exit_status = e.status
