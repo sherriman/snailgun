@@ -9,7 +9,6 @@ command-line Ruby interpreter is required.
 Installation
 ------------
 
-    sudo gem install mysql_retry_lost_connection
     sudo gem install snailgun-rr
 
 Case 1: standalone
@@ -75,6 +74,10 @@ it.
 Note that any attempt by `fruby` or `frake` to perform an action in an
 environment other than 'test' will fail.  See below for how to run multiple
 snailgun environments.
+
+Note that snailgun relies on the mysql_retry_lost_connection gem.  Tests and the
+like tha expect broken SQL connections will not work as expected as the
+connection will be retried.  This is necessary because forking breaks the connection.
 
 Merb support has been contributed (using MERB_ENV), but it is untested by
 me.
