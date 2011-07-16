@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 # Copyright (C) Brian Candler 2009. Released under the Ruby licence.
-ENV['SNAILGUN'] = 'yes'
 # Turn on copy-on-write garbage collection in REE: see
 # http://www.rubyenterpriseedition.com/documentation.html#_copy_on_write_friendliness
 begin
@@ -80,6 +79,7 @@ when :rails
     pids[env] = fork do
       STDERR.puts "Server starting for RAILS_ENV=#{env}"
       server = Snailgun::Server.new("#{sockdir}/#{env}")
+      ENV['SNAILGUN'] = 'yes'
       ENV['RAILS_ENV'] = env
       load conf
       # We can get some drastic test speedups by preloading test frameworks

@@ -9,10 +9,8 @@ command-line Ruby interpreter is required.
 Installation
 ------------
 
-    sudo gem install snailgun
-
-Or for the latest code, `git clone git://github.com/candlerb/snailgun.git`
-and put the bin directory into your PATH.
+    sudo gem install mysql_retry_lost_connection
+    sudo gem install snailgun-rr
 
 Case 1: standalone
 ------------------
@@ -215,3 +213,4 @@ Credits:
 * George Ogata <george.ogata@gmail.com>
 * Niklas Hofer <niklas+dev@lanpartei.de>
 * Thies C. Arntzen <thieso@gmail.com>
+* Scott Herrimn <schalias-snailgun@yahoo.com>
