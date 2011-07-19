@@ -84,12 +84,14 @@ when :rails
       load conf
       # We can get some drastic test speedups by preloading test frameworks
       # (although user could do that in config/environments/test.rb)
+      environment_path = Pathname.new( './config/environment.rb' ).realpath
+      test_helper_path = Pathname.new( './test/test_helper.rb' ).realpath
       if env != 'test'
-        if File.exist?('./config/environment.rb')
-          require './config/environment.rb'
+        if environment_path.exist?
+          require environment_path
         end
-      elsif File.exist?('./test/test_helper.rb')
-        require './test/test_helper'
+      elsif test_helper_path.exist?
+        require test_helper_path
       elsif File.exist?('spec/spec_helper.rb')
         require 'spec'
         require 'spec/rails'
