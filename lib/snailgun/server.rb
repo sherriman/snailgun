@@ -107,7 +107,7 @@ module Snailgun
     end
     
     def self.shell
-      shell_opts = ENV['SNAILGUN_SHELL_OPTS'] || "-i"
+      shell_opts = ENV['SNAILGUN_SHELL_OPTS'] || "-l"
       args = shell_opts ? Shellwords.shellwords(shell_opts) : []
       system(ENV['SHELL'] || 'bash', *args)
     end
